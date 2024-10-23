@@ -1,5 +1,5 @@
 const Employee = require('../models/Employee');
-const mongoose = require('mongoose'); // Make sure to import mongoose
+const mongoose = require('mongoose'); 
 
 exports.getEmployees = async (req, res) => {
     const employees = await Employee.find();
@@ -7,9 +7,9 @@ exports.getEmployees = async (req, res) => {
 };
 
 exports.getEmployeeById = async (req, res) => {
-    const { id } = req.params; // The ID from the route
+    const { id } = req.params; 
 
-    // Check if id is a valid ObjectId
+    
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).json({ message: "Invalid ID format" });
     }
@@ -22,18 +22,18 @@ exports.getEmployeeById = async (req, res) => {
 };
 
 exports.addEmployee = async (req, res) => {
-    const { empId, name, email, age } = req.body; // Include empId from request body
-    const newEmployee = new Employee({ empId, name, email, age }); // Set empId
+    const { empId, name, email, age } = req.body; 
+    const newEmployee = new Employee({ empId, name, email, age }); 
 
     await newEmployee.save();
     res.status(201).json(newEmployee);
 };
 
 exports.updateEmployee = async (req, res) => {
-    const { id } = req.params; // The ID from the route
-    const { name, email, age } = req.body;
+    const { id } = req.params; 
+    const { empId , name, email, age } = req.body;
 
-    // Check if id is a valid ObjectId
+    
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).json({ message: "Invalid ID format" });
     }
@@ -48,12 +48,12 @@ exports.updateEmployee = async (req, res) => {
 exports.deleteEmployee = async (req, res) => {
     const { id } = req.params; // Use the id parameter
 
-    // Check if id is a valid ObjectId
+    
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).json({ message: "Invalid ID format" });
     }
 
-    const deletedEmployee = await Employee.findByIdAndDelete(id); // Use findByIdAndDelete
+    const deletedEmployee = await Employee.findByIdAndDelete(id); 
     if (!deletedEmployee) {
         return res.status(404).json({ message: "Employee not found" });
     }

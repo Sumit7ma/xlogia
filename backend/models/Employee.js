@@ -4,7 +4,7 @@ const employeeSchema = new mongoose.Schema({
     empId: { 
         type: Number,
         required: true,
-        unique: true // Ensure this is unique if needed
+        
     },
     name: {
         type: String,
@@ -13,7 +13,7 @@ const employeeSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        match: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+        match: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/, //we use this line to sure email is in proper format
     },
     age: {
         type: Number,
